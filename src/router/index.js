@@ -13,7 +13,7 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "",
+        path: "/",
         name: "home",
         component: HomeView,
       },

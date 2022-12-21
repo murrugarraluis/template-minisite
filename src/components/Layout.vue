@@ -5,8 +5,8 @@
       style="width: 280px"
     >
       <a
-        href="/"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        @click="redirect('/')"
       >
         <!--        <svg class="bi pe-none me-2" width="40" height="32">-->
         <!--          <use xlink:href="#bootstrap" />-->
@@ -16,7 +16,12 @@
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link active text-start" aria-current="page">
+          <a
+            class="nav-link text-white text-start"
+            :class="{ active: page === '/' }"
+            @click="redirect('/')"
+            style="cursor: pointer"
+          >
             <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
             <!--              <use xlink:href="#home" />-->
             <!--            </svg>-->
@@ -24,7 +29,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white text-start">
+          <a
+            class="nav-link text-white text-start"
+            :class="{ active: page === '/gestion-imagenes' }"
+            @click="redirect('/gestion-imagenes')"
+            style="cursor: pointer"
+          >
             <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
             <!--              <use xlink:href="#speedometer2" />-->
             <!--            </svg>-->
@@ -32,7 +42,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white text-start">
+          <a
+            class="nav-link text-white text-start"
+            :class="{ active: page === '/gestion-stock' }"
+            @click="redirect('/gestion-stock')"
+            style="cursor: pointer"
+          >
             <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
             <!--              <use xlink:href="#speedometer2" />-->
             <!--            </svg>-->
@@ -40,7 +55,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white text-start">
+          <a
+            class="nav-link text-white text-start"
+            :class="{ active: page === '/gestion-precios' }"
+            @click="redirect('/gestion-precios')"
+            style="cursor: pointer"
+          >
             <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
             <!--              <use xlink:href="#speedometer2" />-->
             <!--            </svg>-->
@@ -48,7 +68,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white text-start">
+          <a
+            class="nav-link text-white text-start"
+            :class="{ active: page === '/gestion-cantidad-vendida' }"
+            @click="redirect('/gestion-cantidad-vendida')"
+            style="cursor: pointer"
+          >
             <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
             <!--              <use xlink:href="#speedometer2" />-->
             <!--            </svg>-->
@@ -77,7 +102,9 @@
           <li><a class="dropdown-item" href="#">New project...</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
@@ -93,6 +120,17 @@
 <script>
 export default {
   name: "LayoutComponent",
+  data() {
+    return {
+      page: "/",
+    };
+  },
+  methods: {
+    redirect(path) {
+      this.page = path;
+      this.$router.push({ path: path });
+    },
+  },
 };
 </script>
 
@@ -101,14 +139,17 @@ export default {
 .layout {
   min-height: 100vh;
 }
+
 .dropdown-toggle {
   outline: 0;
 }
+
 .btn-toggle-nav a {
   padding: 0.1875rem 0.5rem;
   margin-top: 0.125rem;
   margin-left: 1.25rem;
 }
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #d2f4ea;
