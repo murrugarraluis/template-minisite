@@ -7,7 +7,9 @@
         </div>
         <div class="container text-center">
           <div class="row">
-            <div class="col-9 d-flex justify-content-center align-items-center">
+            <div
+              class="col-12 col-md-9 d-flex justify-content-center align-items-center"
+            >
               <div class="w-100">
                 <div class="row mb-3">
                   <label
@@ -35,7 +37,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-3">
               <div class="mt-4">
                 <button type="submit" class="btn btn-primary">Ingresar</button>
               </div>
