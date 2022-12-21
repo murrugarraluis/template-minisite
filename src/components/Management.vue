@@ -4,9 +4,14 @@
       <h3 class="text-start">{{ title }}</h3>
       <div class="my-3">
         <label for="formFile" class="form-label"
-          >Carga de informarción en formato (.xls)</label
+          >Carga de informarción en formato [.xls, .xlsx]</label
         >
-        <input class="form-control" type="file" id="formFile" />
+        <input
+          class="form-control"
+          type="file"
+          id="formFile"
+          accept=".xls, .xlsx"
+        />
       </div>
       <div class="mb-3 text-muted">
         <a href="" class="fs-6 text-reset">Descargar Plantilla</a>
