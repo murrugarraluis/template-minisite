@@ -1,7 +1,5 @@
 <template>
   <main class="layout d-flex flex-nowrap w-100">
-    <h1 class="visually-hidden">Sidebars examples</h1>
-
     <div
       class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
       style="width: 280px"
@@ -10,51 +8,51 @@
         href="/"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
       >
-        <svg class="bi pe-none me-2" width="40" height="32">
-          <use xlink:href="#bootstrap" />
-        </svg>
-        <span class="fs-4">Sidebar</span>
+        <!--        <svg class="bi pe-none me-2" width="40" height="32">-->
+        <!--          <use xlink:href="#bootstrap" />-->
+        <!--        </svg>-->
+        <span class="fs-4">EMEMSA</span>
       </a>
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#home" />
-            </svg>
+          <a href="#" class="nav-link active text-start" aria-current="page">
+            <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
+            <!--              <use xlink:href="#home" />-->
+            <!--            </svg>-->
             Home
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#speedometer2" />
-            </svg>
-            Dashboard
+          <a href="#" class="nav-link text-white text-start">
+            <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
+            <!--              <use xlink:href="#speedometer2" />-->
+            <!--            </svg>-->
+            Gestión Imagenes
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#table" />
-            </svg>
-            Orders
+          <a href="#" class="nav-link text-white text-start">
+            <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
+            <!--              <use xlink:href="#speedometer2" />-->
+            <!--            </svg>-->
+            Gestión Stock
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#grid" />
-            </svg>
-            Products
+          <a href="#" class="nav-link text-white text-start">
+            <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
+            <!--              <use xlink:href="#speedometer2" />-->
+            <!--            </svg>-->
+            Gestión Precios
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16">
-              <use xlink:href="#people-circle" />
-            </svg>
-            Customers
+          <a href="#" class="nav-link text-white text-start">
+            <!--            <svg class="bi pe-none me-2" width="16" height="16">-->
+            <!--              <use xlink:href="#speedometer2" />-->
+            <!--            </svg>-->
+            Gestión Cantidad Vendida
           </a>
         </li>
       </ul>
