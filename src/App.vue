@@ -1,11 +1,17 @@
 <template>
-  <!--  <nav>-->
-  <!--    <router-link to="/">Home</router-link> |-->
-  <!--    <router-link to="/about">About</router-link>-->
-  <!--  </nav>-->
+  <!--  <Layout></Layout>-->
   <router-view />
 </template>
+<script>
+// @ is an alias to /src
+// import Layout from "@/components/Layout";
 
+export default {
+  components: {
+    // Layout,
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
