@@ -125,6 +125,9 @@ export default {
       page: "/",
     };
   },
+  mounted() {
+    this.page = this.$route.fullPath;
+  },
   methods: {
     redirect(path) {
       this.page = path;
