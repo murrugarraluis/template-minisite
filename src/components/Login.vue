@@ -1,95 +1,49 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      Template Login
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+  <div class="page d-flex justify-content-center align-items-center h-100">
+    <main class="form-signin w-100 m-auto">
+      <form>
+        <div class="row mb-5">
+          <h1 class="h3 mb-3 fw-normal">Gestión de Catálago</h1>
+        </div>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-center align-items-center">
+              <div class="w-100">
+                <div class="row mb-3">
+                  <label
+                    for="inputEmail3"
+                    class="col-sm-3 col-form-label text-start"
+                    >Usuario</label
+                  >
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control" id="inputEmail3" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label
+                    for="inputPassword3"
+                    class="col-sm-3 col-form-label text-start"
+                    >Password</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="inputPassword3"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
   </div>
 </template>
 
@@ -104,18 +58,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+html,
+body {
+  height: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.page {
+  height: 100vh !important;
 }
-a {
-  color: #42b983;
+
+.form-signin {
+  max-width: 600px;
+  padding: 15px;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 </style>
