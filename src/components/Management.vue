@@ -56,7 +56,9 @@ export default {
     downloadTemplateExcel() {
       this.service = this.initService(this.serviceName);
       if (this.service) {
-        console.log(this.service.downloadTemplateExcel());
+        this.service.downloadTemplateExcel().then((res) => {
+          console.log(res);
+        });
       }
     },
     initService(nameService) {

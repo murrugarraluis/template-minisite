@@ -1,5 +1,9 @@
+import HttpService from "@/services/HttpService";
+
 export default class ImageManagementService {
+  httpService = new HttpService();
   async downloadTemplateExcel() {
-    return "downloadTemplateExcel ImageManagementService";
+    let nameFile = "image.xlsx";
+    return this.httpService.downloadTemplateExcel(nameFile);
   }
 }
