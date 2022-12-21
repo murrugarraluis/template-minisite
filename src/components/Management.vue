@@ -21,17 +21,47 @@
           >Descargar Plantilla</a
         >
       </div>
-      <button type="submit" class="btn btn-primary">Procesar</button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        @click="process"
+        :disabled="this.submit"
+      >
+        <span
+          v-show="submit"
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        {{ !this.submit ? "Procesar" : "Procesando..." }}
+      </button>
       <hr class="bg-black border-2 border-top border-dark" />
-      <div class="alert alert-success text-start" role="alert">
-        Se procesó el archivo correctamente.
-      </div>
-      <div class="alert alert-danger text-start" role="alert">
-        No se procesaron estos productos
-        <a href="" class="fs-6 text-reset">descargar logs.</a>
+      <div v-if="alerts.length > 0">
+        <div
+          v-for="(alert, index) in alerts"
+          :key="index"
+          class="alert text-start alert-dismissible fade show"
+          :class="'alert-' + alert.type"
+          role="alert"
+        >
+          {{
+            alert.type === "success"
+              ? "Se procesó el archivo correctamente."
+              : "No se procesaron estos productos."
+          }}
+          <a v-show="alert.type === 'danger'" class="fs-6 text-reset"
+            >descargar logs.</a
+          >
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
       </div>
     </div>
-    <!--    <HelloWorld msg="Welcome to Your Vue.js App" />-->
   </div>
 </template>
 
@@ -46,6 +76,9 @@ export default {
   data() {
     return {
       service: null,
+      statusCodeResponseProcess: null,
+      submit: false,
+      alerts: [],
     };
   },
   props: {
@@ -53,8 +86,19 @@ export default {
     serviceName: String,
   },
   methods: {
+    process() {
+      this.initService(this.serviceName);
+      if (this.service) {
+        this.submit = true;
+        this.service.process().then((res) => {
+          this.submit = false;
+          this.alerts.unshift({ type: res ? "success" : "danger" });
+        });
+      }
+    },
+
     downloadTemplateExcel() {
-      this.service = this.initService(this.serviceName);
+      this.initService(this.serviceName);
       if (this.service) {
         this.service.downloadTemplateExcel().then((res) => {
           console.log(res);
@@ -62,17 +106,26 @@ export default {
       }
     },
     initService(nameService) {
-      switch (nameService) {
-        case "ImageManagementService":
-          return new ImageManagementService();
-        case "StockManagementService":
-          return new StockManagementService();
-        case "PriceManagementService":
-          return new PriceManagementService();
-        case "SalesQuantityManagementService":
-          return new SalesQuantityManagementService();
-        default:
-          return false;
+      if (!this.service) {
+        let service;
+        switch (nameService) {
+          case "ImageManagementService":
+            service = new ImageManagementService();
+            break;
+          case "StockManagementService":
+            service = new StockManagementService();
+            break;
+          case "PriceManagementService":
+            service = new PriceManagementService();
+            break;
+          case "SalesQuantityManagementService":
+            service = new SalesQuantityManagementService();
+            break;
+          default:
+            service = false;
+            break;
+        }
+        this.service = service;
       }
     },
   },
