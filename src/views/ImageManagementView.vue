@@ -1,5 +1,8 @@
 <template>
-  <Management title="Gestión Imagenes"></Management>
+  <Management
+    title="Gestión Imagenes"
+    service-name="ImageManagementService"
+  ></Management>
 </template>
 <script>
 // @ is an alias to /src

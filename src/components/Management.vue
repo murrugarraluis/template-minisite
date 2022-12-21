@@ -14,7 +14,12 @@
         />
       </div>
       <div class="mb-3 text-muted">
-        <a href="" class="fs-6 text-reset">Descargar Plantilla</a>
+        <a
+          class="fs-6 text-reset"
+          @click="downloadTemplateExcel"
+          style="cursor: pointer"
+          >Descargar Plantilla</a
+        >
       </div>
       <button type="submit" class="btn btn-primary">Procesar</button>
       <hr class="bg-black border-2 border-top border-dark" />
@@ -31,10 +36,43 @@
 </template>
 
 <script>
+import ImageManagementService from "@/services/ImageManagementService";
+import StockManagementService from "@/services/StockManagementService";
+import PriceManagementService from "@/services/PriceManagementService";
+import SalesQuantityManagementService from "@/services/SalesQuantityManagementService";
+
 export default {
   name: "ManagementComponent",
+  data() {
+    return {
+      service: null,
+    };
+  },
   props: {
     title: String,
+    serviceName: String,
+  },
+  methods: {
+    downloadTemplateExcel() {
+      this.service = this.initService(this.serviceName);
+      if (this.service) {
+        console.log(this.service.downloadTemplateExcel());
+      }
+    },
+    initService(nameService) {
+      switch (nameService) {
+        case "ImageManagementService":
+          return new ImageManagementService();
+        case "StockManagementService":
+          return new StockManagementService();
+        case "PriceManagementService":
+          return new PriceManagementService();
+        case "SalesQuantityManagementService":
+          return new SalesQuantityManagementService();
+        default:
+          return false;
+      }
+    },
   },
 };
 </script>
