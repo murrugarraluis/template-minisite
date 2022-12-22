@@ -1,5 +1,7 @@
 <template>
-  <div class="page d-flex justify-content-center align-items-center h-100">
+  <div
+    class="page d-flex justify-content-center align-items-center h-100 p-3 p-md-5"
+  >
     <main class="form-signin w-100 m-auto">
       <form>
         <div class="row mb-5">
@@ -115,15 +117,20 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
 }
 .page {
   height: 100vh !important;
 }
 
 .form-signin {
-  max-width: 600px;
-  padding: 15px;
+  max-width: 680px;
+  padding: 100px 20px;
+  border-radius: 10px;
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
 }
 
 .form-signin input[type="email"] {
