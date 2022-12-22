@@ -61,7 +61,10 @@
               ? "Se procesó el archivo correctamente."
               : "No se procesaron estos productos."
           }}
-          <a v-show="alert.type === 'danger'" class="fs-6 text-reset"
+          <a
+            v-show="alert.type === 'danger'"
+            class="fs-6 text-reset"
+            style="cursor: pointer"
             >descargar logs.</a
           >
 

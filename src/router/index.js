@@ -6,6 +6,7 @@ import ImageManagementView from "@/views/ImageManagementView";
 import StockManagementView from "@/views/StockManagementView";
 import PriceManagementView from "@/views/PriceManagementView";
 import SalesQuantityManagementView from "@/views/SalesQuantityManagementView";
+import NotFound from "@/views/NotFoundView";
 
 const routes = [
   {
@@ -43,6 +44,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "notfound",
+    component: NotFound,
   },
 ];
 
