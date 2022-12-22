@@ -18,10 +18,15 @@
                     >Usuario</label
                   >
                   <div class="col-sm-9">
-                    <input type="email" class="form-control" id="inputEmail3" />
+                    <input
+                      v-model="user"
+                      type="email"
+                      class="form-control"
+                      id="inputEmail3"
+                    />
                   </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row">
                   <label
                     for="inputPassword3"
                     class="col-sm-3 col-form-label text-start"
@@ -29,17 +34,26 @@
                   >
                   <div class="col-sm-9">
                     <input
+                      v-model="password"
                       type="password"
                       class="form-control"
                       id="inputPassword3"
                     />
                   </div>
                 </div>
+                <div
+                  v-show="submit && response !== 200"
+                  class="text-danger text-center"
+                >
+                  Credenciales incorrectas.
+                </div>
               </div>
             </div>
             <div class="col-12 col-md-3">
               <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <button type="submit" class="btn btn-primary" @click="login">
+                  Ingresar
+                </button>
               </div>
             </div>
           </div>
@@ -50,10 +64,42 @@
 </template>
 
 <script>
+import AuthService from "@/services/AuthService";
+
 export default {
   name: "LoginComponent",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      authService: null,
+      user: "admin@ememsa",
+      password: "123456",
+      response: null,
+      submit: null,
+    };
+  },
+  created() {
+    this.authService = new AuthService();
+  },
+  methods: {
+    login() {
+      let payload = {
+        user: this.user,
+        password: this.password,
+      };
+      this.submit = true;
+      this.authService.login(payload).then((res) => {
+        console.log(res);
+        this.response = res ? 200 : 400;
+        if (res) {
+          localStorage.setItem("token", "1234");
+          this.$router.push({ name: "home" });
+          this.submit = false;
+        }
+      });
+    },
   },
 };
 </script>

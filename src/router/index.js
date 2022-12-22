@@ -12,6 +12,9 @@ const routes = [
   {
     path: "/",
     component: Layout,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         path: "/",
@@ -55,6 +58,29 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+router.beforeEach((to, from, next) => {
+  // A Logged-in user can't go to login page again
+  if (to.name === "login" && localStorage.getItem("token")) {
+    next({ name: "home" });
+    return;
+    // the route requires authentication
+  } else if (to.meta.requiresAuth) {
+    // console.log(localStorage.getItem('token'))
+    if (!localStorage.getItem("token")) {
+      // user not logged in, send them to login page
+      next({ name: "login" });
+      return;
+    }
+    // else if (to.name === "app") {
+    //   next({ name: "dashboard" });
+    // }
+    // } else if (!hasAccess(to.name)) {
+    //   next("notfound");
+    //   return;
+    // }
+  }
+  next();
 });
 
 export default router;
