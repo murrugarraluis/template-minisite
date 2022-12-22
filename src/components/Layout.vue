@@ -105,7 +105,11 @@
           <li>
             <hr class="dropdown-divider" />
           </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li>
+            <a class="dropdown-item" @click="logout" style="cursor: pointer"
+              >Sign out</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -118,12 +122,18 @@
 </template>
 
 <script>
+import AuthService from "@/services/AuthService";
+
 export default {
   name: "LayoutComponent",
   data() {
     return {
       page: "/",
+      authService: null,
     };
+  },
+  created() {
+    this.authService = new AuthService();
   },
   mounted() {
     this.page = this.$route.fullPath;
@@ -132,6 +142,14 @@ export default {
     redirect(path) {
       this.page = path;
       this.$router.push({ path: path });
+    },
+    logout() {
+      this.authService.logout().then((res) => {
+        if (res) {
+          localStorage.removeItem("token");
+          this.$router.push({ name: "login" });
+        }
+      });
     },
   },
 };

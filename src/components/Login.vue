@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       authService: null,
-      user: "admin@ememsa",
+      user: "admin@ememsa.com",
       password: "123456",
       response: null,
       submit: null,
@@ -91,7 +91,6 @@ export default {
       };
       this.submit = true;
       this.authService.login(payload).then((res) => {
-        console.log(res);
         this.response = res ? 200 : 400;
         if (res) {
           localStorage.setItem("token", "1234");

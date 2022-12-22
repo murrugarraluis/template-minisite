@@ -14,10 +14,16 @@ export default class HttpService {
     //TODO: consult backend and download file
     return nameFile;
   }
-  async login(uri, payload) {
-    let authBack = { user: "admin@ememsa", password: "123456" };
+  async login(payload) {
+    // TODO: consult backend and return response
+    let authBack = { user: "admin@ememsa.com", password: "123456" };
     return (
       payload.user === authBack.user && payload.password === authBack.password
     );
+  }
+  async logout() {
+    // TODO: consult backend and return response
+    // let authBack = { user: "admin@ememsa", password: "123456" };
+    return true;
   }
 }
