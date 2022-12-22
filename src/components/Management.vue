@@ -6,12 +6,20 @@
         <label for="formFile" class="form-label"
           >Carga de informarción en formato [.xls, .xlsx]</label
         >
-        <input
-          class="form-control"
-          type="file"
-          id="formFile"
-          accept=".xls, .xlsx"
-        />
+        <div class="mb-3">
+          <input
+            ref="fileInput"
+            class="form-control"
+            :class="{ 'is-invalid': submit && !file }"
+            type="file"
+            id="formFile"
+            accept=".xls, .xlsx"
+            required
+          />
+          <div v-show="submit && !file" class="text-danger">
+            debe seleccionar un archivo primero.
+          </div>
+        </div>
       </div>
       <div class="mb-3 text-muted">
         <a
@@ -21,21 +29,25 @@
           >Descargar Plantilla</a
         >
       </div>
-      <button
-        class="btn btn-primary"
-        type="button"
-        @click="process"
-        :disabled="this.submit"
-      >
-        <span
-          v-show="submit"
-          class="spinner-border spinner-border-sm"
-          role="status"
-          aria-hidden="true"
-        ></span>
-        {{ !this.submit ? "Procesar" : "Procesando..." }}
-      </button>
-      <hr class="bg-black border-2 border-top border-dark" />
+      <!--      Button process-->
+      <div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          @click="process"
+          :disabled="this.processing"
+        >
+          <span
+            v-show="processing"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          {{ !this.processing ? "Procesar" : "Procesando..." }}
+        </button>
+        <hr class="bg-black border-2 border-top border-dark" />
+      </div>
+      <!--      ALERTS-->
       <div v-if="alerts.length > 0">
         <div
           v-for="(alert, index) in alerts"
@@ -78,7 +90,9 @@ export default {
       service: null,
       statusCodeResponseProcess: null,
       submit: false,
+      processing: false,
       alerts: [],
+      file: null,
     };
   },
   props: {
@@ -87,14 +101,28 @@ export default {
   },
   methods: {
     process() {
-      this.initService(this.serviceName);
-      if (this.service) {
-        this.submit = true;
+      this.submit = true;
+      this.file = this.getFileSelected();
+      if (this.file) {
+        this.initService(this.serviceName);
+        this.processing = true;
         this.service.process().then((res) => {
           this.submit = false;
-          this.alerts.unshift({ type: res ? "success" : "danger" });
+          this.processing = false;
+          this.addAlert({ type: res ? "success" : "danger" });
+          this.clearFile();
         });
       }
+    },
+    addAlert(obj) {
+      this.alerts.unshift(obj);
+    },
+    clearFile() {
+      this.$refs.fileInput.value = "";
+      this.file = null;
+    },
+    getFileSelected() {
+      return this.$refs.fileInput.files[0];
     },
 
     downloadTemplateExcel() {
